@@ -18,5 +18,10 @@
     "babel-preset-expo": "~8.0.0",
     "@babel/core": "^7.0.0"
   },
-  "private": true
+  "name": "smart_farm_app",
+  "version": "0.0.1",
+  "description": "Mobile interface for automated farm project",
+  "private": true,
+  "license": "ISC",
+  "author": "Wojciech Jagielnicki <franczalko@gmail.com>"
 }
