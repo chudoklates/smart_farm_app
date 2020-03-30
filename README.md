@@ -1,7 +1,7 @@
-## smart_farm_app
+# smart_farm_app
 Mobile interface for automated farm project
 
-# Installation instructions
+## Installation instructions
 
 1. You must have npm/yarn installed globally (npm version 10 something at least)
 2. Install `expo-cli` on your machine and the Expo app on your Android/iOS phone
