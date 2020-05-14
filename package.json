@@ -1,22 +1,16 @@
 {
   "main": "node_modules/expo/AppEntry.js",
   "scripts": {
-    "start": "expo start",
-    "android": "expo start --android",
-    "ios": "expo start --ios",
-    "web": "expo start --web",
-    "eject": "expo eject"
-  },
-  "dependencies": {
-    "expo": "~36.0.0",
-    "react": "~16.9.0",
-    "react-dom": "~16.9.0",
-    "react-native": "https://github.com/expo/react-native/archive/sdk-36.0.0.tar.gz",
-    "react-native-web": "~0.11.7"
+    "start": "concurrently  --kill-others 'npm run start-backend' 'npm run start-frontend'",
+    "start-backend": "cd backendApp && npm start",
+    "start-frontend": "cd frontendApp && expo start",
+    "install-all": "npm install && concurrently 'npm run install-backend' 'npm run install-frontend' ",
+    "install-backend": "cd backendApp && npm install",
+    "install-frontend": "cd frontendApp && npm install",
+    "uninstall": "find . -name \"node_modules\" -exec rm -rf '{}' +"
   },
   "devDependencies": {
-    "babel-preset-expo": "~8.0.0",
-    "@babel/core": "^7.0.0"
+    "concurrently": "^5.2.0"
   },
   "name": "smart_farm_app",
   "version": "0.0.1",
