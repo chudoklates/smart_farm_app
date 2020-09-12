@@ -1,9 +1,18 @@
-// import createError from 'http-errors'
 import express from 'express'
-// import express from 'express'
 import cookieParser from 'cookie-parser'
 import logger from 'morgan'
 import http from 'http'
+import { db } from './config'
+
+require('./fixtures')
+
+db.on('error', error => {
+  console.error(`Mongo connection error: ${error.message}`)
+  process.exit(1)
+})
+db.once('open', async () => {
+  console.log('Connected to the database')
+})
 
 const app = express();
 
