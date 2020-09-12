@@ -1,6 +1,7 @@
 {
   "name": "backendapp",
   "version": "0.0.0",
+  "main": "./src/app.js",
   "private": true,
   "scripts": {
     "launch": "nodemon ./src/app.js --exec babel-node -e js",
