@@ -2,7 +2,8 @@ import express from 'express'
 import cookieParser from 'cookie-parser'
 import logger from 'morgan'
 import http from 'http'
-import { db } from './config'
+
+import { db/*, agenda, jobs*/ } from './config'
 
 require('./fixtures')
 
@@ -13,6 +14,24 @@ db.on('error', error => {
 db.once('open', async () => {
   console.log('Connected to the database')
 })
+
+// ;(async () => {
+//   jobs.forEach(({ callback, jobName }) => {
+//     agenda.define(jobName, callback)
+//   })
+//   // if (production) { 
+
+//   // } else {
+//   /**********************/
+//   /* RUN TEST JOBS HERE */
+//   /**********************/
+//   await agenda.start()
+//   console.log('Agenda started')
+//   jobs.forEach(({ interval, jobName, options, type }) => {
+//     if (type === 'single' && jobName.indexOf('TEST') === 0) agenda.every(interval, jobName, [], options)
+//   })
+//   // }
+// })()
 
 const app = express();
 
@@ -27,24 +46,29 @@ app.use(cookieParser());
 // });
 
 // error handler
-app.use(function(err, req, res, next) {
-  // set locals, only providing error in development
-  res.locals.message = err.message;
-  res.locals.error = req.app.get('env') === 'development' ? err : {};
+// app.use(function (err, req, res, next) {
+//   // set locals, only providing error in development
+//   res.locals.message = err.message;
+//   res.locals.error = req.app.get('env') === 'development' ? err : {};
 
-  // render the error page
-  res.status(err.status || 500);
-  res.render('error');
-});
+//   // render the error page
+//   res.status(err.status || 500);
+//   res.render('error');
+// });
 
 app.get('/', (req, res) => {
   res.writeHead(200, { Connection: 'close' })
   res.end('Up and running!')
 })
 
- /**
- * Normalize a port into a number, string, or false.
- */
+app.post('/', (req, res) => {
+  console.log(req.body)
+  res.sendStatus(200)
+})
+
+/**
+* Normalize a port into a number, string, or false.
+*/
 
 const normalizePort = (val) => {
   var port = parseInt(val, 10);
