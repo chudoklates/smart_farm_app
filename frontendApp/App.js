@@ -1,35 +1,17 @@
 import React from 'react';
-import { StyleSheet, Text, View, Image, Dimensions } from 'react-native';
+import { Router, Scene } from 'react-native-router-flux'
+import { Home, Graph, ErrorBoundary } from './components'
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text style={styles.text}>
-        Being a complete fucking retard
-      </Text>
-      <Image
-        style={styles.wujekWladek}
-        source={require('./assets/itaintmuch.jpg')}
-      />
-    </View>
+    <ErrorBoundary>
+      <Router>
+        <Scene key="root">
+          <Scene key="home" component={Home} initial />
+          <Scene key="graph" component={Graph} />
+        </Scene>
+      </Router>
+    </ErrorBoundary>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  wujekWladek: {
-    height: Dimensions.get('window').height / 2,
-    width: Dimensions.get('window').width,
-    resizeMode: 'stretch'
-  },
-  text: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    marginBottom: 15
-  }
-});
