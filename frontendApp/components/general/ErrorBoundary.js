@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, StyleSheet } from 'react-native';
 
 class ErrorBoundary extends Component {
   state = {
@@ -18,8 +18,8 @@ class ErrorBoundary extends Component {
     if(this.state.error) {
       console.error(this.state.error)
       return (
-        <View>
-          <Text>Oops. something went wrong!</Text>
+        <View style={styles.container}>
+          <Text style={styles.text}>Oops. something went wrong!</Text>
         </View>
       );
     } else {
@@ -27,5 +27,20 @@ class ErrorBoundary extends Component {
     }
   }
 }
+
+const styles = StyleSheet.create({
+  text: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    marginBottom: 15
+  },
+  container: {
+    flex: 1,
+    flexDirection: 'column',
+    backgroundColor: '#fff',
+    alignItems: 'center',
+    justifyContent: 'center',
+  }
+});
 
 export default ErrorBoundary

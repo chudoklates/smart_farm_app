@@ -4,14 +4,14 @@ import { StyleSheet, Dimensions, View } from 'react-native';
 import { VictoryChart, VictoryLine } from 'victory-native'
 
 const sampleData = [
-  { a: new Date(1982, 1, 1), b: 125 },
-  { a: new Date(1987, 1, 1), b: 257 },
-  { a: new Date(1993, 1, 1), b: 345 },
-  { a: new Date(1997, 1, 1), b: 515 },
-  { a: new Date(2001, 1, 1), b: 132 },
-  { a: new Date(2005, 1, 1), b: 305 },
-  { a: new Date(2011, 1, 1), b: 270 },
-  { a: new Date(2015, 1, 1), b: 470 }
+  { time: new Date("2020-10-04T13:19:00Z"), moisture: 99.3 },
+  { time: new Date("2020-10-04T13:20:00Z"), moisture: 98.4 },
+  { time: new Date("2020-10-04T13:21:00Z"), moisture: 95.4 },
+  { time: new Date("2020-10-04T13:22:00Z"), moisture: 92.1 },
+  { time: new Date("2020-10-04T13:23:00Z"), moisture: 89.2 },
+  { time: new Date("2020-10-04T13:24:00Z"), moisture: 88.1 },
+  { time: new Date("2020-10-04T13:25:00Z"), moisture: 86.2 },
+  { time: new Date("2020-10-04T13:26:00Z"), moisture: 83.5 }
 ]
 
 const Graph = () => {
@@ -21,11 +21,11 @@ const Graph = () => {
       <VictoryChart width={width - 20} height={350} scale={{ x: "time" }} >
       <VictoryLine
         style={{
-          data: { stroke: "tomato" }
+          data: { stroke: "royalblue" }
         }}
         data={sampleData}
-        x="a"
-        y="b"
+        x="time"
+        y="moisture"
       />
       </VictoryChart>
     </View>

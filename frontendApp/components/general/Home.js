@@ -1,15 +1,41 @@
-import React from 'react';
+import React, { useRef, useEffect } from 'react';
 import { Actions } from 'react-native-router-flux'
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { StyleSheet, Button, View, Animated } from 'react-native';
+import wladek from '../../assets/itaintmuch.jpg'
 
 const Home = () => {
+  const translateAnim = useRef(new Animated.Value(0)).current
+
+  useEffect(() => {
+    const loop = Animated.loop(Animated.sequence([
+      Animated.delay(5000),
+      Animated.timing(translateAnim, {
+        toValue: -360,
+        duration: 5000
+      }),
+      Animated.delay(1000),
+      Animated.timing(translateAnim, {
+        toValue: 0,
+        duration: 5000
+      })
+    ]))
+
+    loop.start()
+
+    return () => loop.stop()
+  })
+
   return (
     <View style={styles.container} >
-      <TouchableOpacity onPress={Actions.graph}>
-        <Text style={styles.text}>
-          View graph
-        </Text>
-      </TouchableOpacity>
+      <Button title="View graph" onPress={Actions.graph} />
+      <Animated.Image
+        source={wladek}
+        style={[styles.image, {
+          transform: [
+            { translateX: translateAnim }
+          ]
+        }]}
+      />
     </View>
   );
 }
@@ -17,15 +43,11 @@ const Home = () => {
 export default Home
 
 const styles = StyleSheet.create({
-  text: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    marginBottom: 15
+  image: {
+    opacity: 0.7,
   },
   container: {
-    padding: 10,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    flex: 1,
+    flexDirection: 'column'
   }
 });
